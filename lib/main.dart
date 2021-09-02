@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:front_end_utente/components/Counter.dart';
-import 'package:front_end_utente/components/MyHomePage.dart';
-
-import 'components/OrangeContainer.dart';
+import 'package:front_end_utente/screens/homepage/MyHomepage.dart';
+import 'package:front_end_utente/screens/prenotazioni/prenotazioni.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,10 +14,19 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        secondaryHeaderColor: Colors.white,
       ),
-      home: MyHomePage(),
+      routes: mainRouting(),
     );
   }
+
+  Map<String,WidgetBuilder> mainRouting(){
+    return {
+      '/': (context) => MyHomepage(),
+      '/prenotazioni': (context) => Prenotazioni(),
+    };
+  }
+
 }
 
 
