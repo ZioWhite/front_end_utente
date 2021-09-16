@@ -9,17 +9,20 @@ class Donazione{
   Donazione({this.id,this.date,this.sede});
 
   factory Donazione.fromJson(Map<String,dynamic> json) {
-    return Donazione(
+    Sede s=Sede.fromJson(json['sede']);
+    DateTime data=DateTime.parse(json['data']);
+    Donazione d= Donazione(
       id:json['id'],
-      date:json['data'],
-      sede:json['sede']
     );
+    d.sede=s;
+    d.date=data;
+    return d;
   }
 
   Map<String,dynamic> toJson()=>{
     'id':id,
     'data':date,
-    'sede':sede
+    'sede':sede.toJson()
   };
 
 }

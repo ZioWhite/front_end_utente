@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:front_end_utente/screens/prenotazioni/prenotazioni.dart';
+import 'package:front_end_utente/screens/behaviours/AppLocalizations.dart';
+import 'package:front_end_utente/support/extension/StringCapitalization.dart';
 
 class MyDrawer extends StatelessWidget{
 
@@ -12,12 +13,12 @@ class MyDrawer extends StatelessWidget{
           DrawerHeader(
             child: Text("Header"),
             decoration: BoxDecoration(
-              color: Colors.deepOrange,
+              color: Theme.of(context).buttonColor,
             ),
           ),
           ListTile(
             leading: Icon(Icons.assignment_rounded),
-            title:Text("Prenotazioni"),
+            title:Text(AppLocalizations.of(context).translate("reservations").capitalize),
             onTap: () {
               Navigator.pushNamed(context,'/prenotazioni');
             },
@@ -25,21 +26,23 @@ class MyDrawer extends StatelessWidget{
           Divider(),
           ListTile(
             leading: Icon(Icons.bloodtype),
-            title: Text("Donazioni"),
-            onTap: (){},
+            title: Text(AppLocalizations.of(context).translate("donations").capitalize),
+            onTap: (){
+              Navigator.pushNamed(context, '/donazioni');
+            },
           ),
           Divider(),
           ListTile(
             leading: Icon(Icons.where_to_vote),
-            title:Text("Sedi"),
+            title:Text(AppLocalizations.of(context).translate("branches").capitalize),
             onTap: (){}
           ),
           Divider(),
           ListTile(
             trailing: Icon(Icons.close),
-            title: Text("close"),
+            title: Text(AppLocalizations.of(context).translate("close")),
             onTap: (){
-              print("Closed!");
+              Navigator.pop(context);
             },
           )
         ],

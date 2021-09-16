@@ -12,20 +12,23 @@ class Registrazione{
   Registrazione({this.id,this.esito,this.donor,this.donation,this.note});
 
   factory Registrazione.fromJson(Map<String,dynamic> json){
-    return Registrazione(
+    Donatore d=Donatore.fromJson(json['donatore']);
+    Donazione don=Donazione.fromJson(json['donazione']);
+    Registrazione r = Registrazione(
       id:json['id'],
       esito:json['esito'],
-      donor:json['donatore'],
-      donation: json['donazione'],
       note:json['note'],
     );
+    r.donor=d;
+    r.donation=don;
+    return r;
   }
 
   Map<String,dynamic> toJson()=>{
     'id':id,
     'esito':esito,
-    'donatore':donor,
-    'donazione':donation,
+    'donatore':donor.toJson(),
+    'donazione':donation.toJson(),
     'note':note,
   };
 

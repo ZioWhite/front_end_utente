@@ -1,6 +1,7 @@
 import 'dart:core';
 
 import 'package:flutter/material.dart';
+import 'package:front_end_utente/models/support/extension/TimeTokenizer.dart';
 
 import 'Donazione.dart';
 
@@ -16,13 +17,22 @@ class Turno{
   Turno({this.id,this.start,this.end,this.slots,this.donazione});
 
   factory Turno.fromJson(Map<String,dynamic> json){
-    return Turno(
+    Turno t = Turno(
       id:json['id'],
-      start:json['inizio'],
-      end:json['fine'],
+      start:TimeTokenizer.convert(json['start']),
+      end:TimeTokenizer.convert(json['end']),
       slots:json['slots'],
-      donazione:json['donazione']
+      donazione:Donazione.fromJson(json['donazione'])
     );
+    return t;
   }
+
+  Map<String,dynamic> toJson()=>{
+    'id':id,
+    'start':start,
+    'end':end,
+    'slots':slots,
+    'donazione':donazione.toJson()
+  };
 
 }

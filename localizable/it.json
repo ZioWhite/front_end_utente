@@ -1,0 +1,23 @@
+{
+  "next_donations" : "prossime donazioni",
+  "donor" : "donor",
+  "welcome_to" : "benvenuto in",
+  "login" : "login",
+  "email" : "email",
+  "password" : "password",
+  "successful_login" : "login avvenuto",
+  "no_results" : "nessun risultato",
+  "no_more_reservations" : "non ci sono altre prenotazioni",
+  "reservations" : "prenotazioni",
+  "for_the_donation_on" : "per la donazione del",
+  "in" : "a",
+  "are_available_shifts" : "sono disponibili i seguenti turni",
+  "want_to_book" : "vuoi prenotarti per questo turno",
+  "confirm" : "conferma",
+  "cancel" : "annulla",
+  "book" : "prenotati",
+  "reservations" : "prenotazioni",
+  "donations" : "donazioni",
+  "branches" : "branches",
+  "close" : "chiudi"
+}

@@ -1,0 +1,23 @@
+{
+  "next_donations" : "next donations",
+  "donor" : "donor",
+  "welcome_to" : "welcome to",
+  "login" : "login",
+  "email" : "email",
+  "password" : "password",
+  "successful_login"  : "successful login",
+  "no_results" : "no results",
+  "no_more_reservations" : "there are no more reservations",
+  "reservations" : "reservations",
+  "for_the_donation_on" : "for the donation on",
+  "in" : "in",
+  "are_available_shifts" : "the following shits are available",
+  "want_to_book" : "do you want to book for this turn",
+  "confirm" : "confirm",
+  "cancel" : "cancel",
+  "book" : "book",
+  "reservations" : "reservations",
+  "donations" : "donations",
+  "branches" : "branches",
+  "close" : "close"
+}

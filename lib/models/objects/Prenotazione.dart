@@ -10,17 +10,24 @@ class Prenotazione {
   Prenotazione({this.id,this.donor,this.turn});
 
   factory Prenotazione.fromJson(Map<String,dynamic> json){
-    return Prenotazione(
+    Donatore d=Donatore.fromJson(json['donatore']);
+    Turno t = Turno.fromJson(json['turno']);
+    Prenotazione p = Prenotazione(
       id:json['id'],
-      donor:json['donatore'],
-      turn:json['turno']
     );
+    p.donor=d;
+    p.turn=t;
+    return p;
   }
 
   Map<String,dynamic> toJson()=>{
     'id':id,
-    'donatore':donor,
-    'turno':turn
+    'donatore':donor.toJson(),
+    'turno':turn.toJson()
   };
+
+  String toString(){
+    return donor.toString()+" "+turn.donazione.date.toString()+"id: "+id.toString();
+  }
 
 }

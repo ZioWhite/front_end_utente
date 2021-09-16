@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:front_end_utente/screens/behaviours/AppLocalizations.dart';
+import 'package:front_end_utente/screens/donazioni/DonazioniPage.dart';
 import 'package:front_end_utente/screens/homepage/MyHomepage.dart';
+import 'package:front_end_utente/screens/login/LoginPage.dart';
 import 'package:front_end_utente/screens/prenotazioni/prenotazioni.dart';
+
+import 'models/support/Constants.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,10 +17,23 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: Constants.APP_NAME,
+      localizationsDelegates: [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        secondaryHeaderColor: Colors.white,
+        primaryColor: Colors.blue,
+        buttonColor: Colors.red,
+        backgroundColor: Colors.white,
+      ),
+      darkTheme: ThemeData(
+        primaryColor: Colors.amberAccent,
+        backgroundColor: Colors.black,
+        canvasColor: Colors.black,
+        buttonColor: Colors.amber,
+        cardColor: Colors.grey[800],
       ),
       routes: mainRouting(),
     );
@@ -22,8 +41,10 @@ class MyApp extends StatelessWidget {
 
   Map<String,WidgetBuilder> mainRouting(){
     return {
-      '/': (context) => MyHomepage(),
+      '/home': (context) => MyHomepage(),
       '/prenotazioni': (context) => Prenotazioni(),
+      '/donazioni': (context) => DonazioniPage(),
+      '/':(context)=>LoginPage(),
     };
   }
 
