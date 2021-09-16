@@ -35,7 +35,9 @@ class MyDrawer extends StatelessWidget{
           ListTile(
             leading: Icon(Icons.where_to_vote),
             title:Text(AppLocalizations.of(context).translate("branches").capitalize),
-            onTap: (){}
+            onTap: (){
+              Navigator.pushNamed(context, '/sedi');
+            }
           ),
           Divider(),
           ListTile(

@@ -1,39 +1,37 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:front_end_utente/components/CirculareIconButton.dart';
 import 'package:front_end_utente/components/InputField.dart';
 import 'package:front_end_utente/models/Model.dart';
-import 'package:front_end_utente/models/objects/Donazione.dart';
+import 'package:front_end_utente/models/objects/Sede.dart';
 import 'package:front_end_utente/screens/behaviours/AppLocalizations.dart';
+import 'package:front_end_utente/screens/donazioni/components/BranchCard.dart';
 import 'package:front_end_utente/support/extension/StringCapitalization.dart';
 
-import 'DonationCard.dart';
-
-class DonazioniBody extends StatefulWidget {
+class SediBody extends StatefulWidget{
 
   @override
-  State<DonazioniBody> createState()=>_donazioniBodyState();
+  State<SediBody> createState()=>_sediBodyState();
 
 }
 
-class _donazioniBodyState extends State<DonazioniBody>{
+class _sediBodyState extends State<SediBody>{
 
   TextEditingController _cittaFiledController = TextEditingController();
   String input="";
   bool _working=false;
-  List<Donazione> _donazioni=null;
+  List<Sede> _sedi=null;
   int page=0;
-  int size=25;
+  int size=0;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return Center(
       child: Column(
-        children: <Widget>[
+        children: [
           top(),
           bottom(),
-          pageIndex(),
+          pageIndex()
         ],
       )
     );
@@ -43,7 +41,7 @@ class _donazioniBodyState extends State<DonazioniBody>{
     return Padding(
       padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
       child: Row(
-        children: <Widget>[
+        children: [
           Flexible(
             child: InputField(
               labelText: AppLocalizations.of(context).translate("city"),
@@ -52,8 +50,8 @@ class _donazioniBodyState extends State<DonazioniBody>{
                 input=_cittaFiledController.text;
                 page=0;
                 search();
-                },
-            )
+              },
+            ),
           ),
           CircularIconButton(
             icon: Icons.search_rounded,
@@ -61,98 +59,105 @@ class _donazioniBodyState extends State<DonazioniBody>{
               input=_cittaFiledController.text;
               page=0;
               search();
-              },
-          ),
-        ]
+            },
+          )
+        ],
       )
     );
   }
 
   Widget bottom(){
     return !_working ?
-        _donazioni==null ?
+        _sedi==null ?
             SizedBox.shrink() :
-            _donazioni.length == 0 ?
+            _sedi.length == 0 ?
                 noResults() :
                 yesResults() :
-            CircularProgressIndicator();
+        CircularProgressIndicator();
   }
 
   Widget noResults(){
     return Center(
-      child: _donazioni==null ?
+      child: _sedi==null ?
       Text(
           AppLocalizations.of(context).translate("no_results").capitalize+"!",
-          style:
+        style:
           TextStyle(
-              fontSize: 40,
-              color: Theme.of(context).primaryColor
+            fontSize: 40,
+            color: Theme.of(context).primaryColor
           )
       ) :
       Text(
-          AppLocalizations.of(context).translate("no_more_donations").capitalize+"!",
-          style:
-          TextStyle(
-              fontSize: 40,
-              color: Theme.of(context).primaryColor
-          )
+        AppLocalizations.of(context).translate("no_more_branches").capitalize+"!",
+        style:
+        TextStyle(
+          fontSize: 40,
+          color: Theme.of(context).primaryColor
+        ),
       )
     );
   }
 
   Widget yesResults(){
     return Expanded(
-      child: ListView.builder(
-        itemCount: _donazioni.length,
+      child: ListView.separated(
+        itemCount: _sedi.length,
         itemBuilder: (context,index){
-            return DonationCard(donazione:_donazioni[index]);
-          },
+          return BranchCard(_sedi[index]);
+        },
+        separatorBuilder: (context,index){
+          return new Divider(
+            thickness: 1,
+            indent: 5,
+            endIndent: 5,
+          );
+        },
       ),
     );
   }
 
   Widget nextButton(){
-    return _donazioni.length<size ?
-        SizedBox.shrink() :
-        TextButton(
-          child: Text(
-             ">",
-             style: TextStyle(
-                  fontSize: 25,
-                 color: Theme.of(context).primaryColor
-             )
-          ),
-          onPressed: (){
-            setState(() {
-              page++;
-            });
-            search();
-          },
-        );
+    return _sedi.length<size ?
+    SizedBox.shrink() :
+    TextButton(
+      child: Text(
+          ">",
+          style: TextStyle(
+              fontSize: 25,
+              color: Theme.of(context).primaryColor
+          )
+      ),
+      onPressed: (){
+        setState(() {
+          page++;
+        });
+        search();
+      },
+    );
   }
 
   Widget previousButton(){
     return page==0 ?
-        SizedBox.shrink() :
+    SizedBox.shrink() :
     TextButton(
-        child: Text(
-            "<",
-            style: TextStyle(
-                fontSize: 25,
-                color: Theme.of(context).primaryColor
-            )
-        ),
+      child: Text(
+          "<",
+          style: TextStyle(
+              fontSize: 25,
+              color: Theme.of(context).primaryColor
+          )
+      ),
       onPressed: (){
-          setState(() {
-            page--;
-            search();
-          });
+        setState(() {
+          page--;
+          search();
+        });
       },
     );
   }
 
   Widget pageIndex(){
-    if(_donazioni==null)return SizedBox.shrink();
+    if(_sedi==null)return SizedBox.shrink();
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -160,10 +165,10 @@ class _donazioniBodyState extends State<DonazioniBody>{
         previousButton(),
         Text(
             (page+1).toString(),
-          style: TextStyle(
-            fontSize: 20,
-            color: Theme.of(context).primaryColor,
-          )
+            style: TextStyle(
+              fontSize: 20,
+              color: Theme.of(context).primaryColor,
+            )
         ),
         nextButton(),
       ],
@@ -173,12 +178,12 @@ class _donazioniBodyState extends State<DonazioniBody>{
   void search(){
     setState(() {
       _working=true;
-      _donazioni=null;
+      _sedi=null;
     });
-    Model.sharedInstance.searchDonazioni(input,page,size).then((result) {
+    Model.sharedInstance.searchSedi(page,size,"nome",input).then((result) {
       setState(() {
         _working = false;
-        _donazioni = result;
+        _sedi = result;
       });
     });
   }

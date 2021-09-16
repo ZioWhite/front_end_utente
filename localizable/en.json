@@ -8,6 +8,8 @@
   "successful_login"  : "successful login",
   "no_results" : "no results",
   "no_more_reservations" : "there are no more reservations",
+  "no_more_branches" : "there are no more branches",
+  "no_more_donations" : "there are no more donations",
   "reservations" : "reservations",
   "for_the_donation_on" : "for the donation on",
   "in" : "in",
@@ -19,5 +21,6 @@
   "reservations" : "reservations",
   "donations" : "donations",
   "branches" : "branches",
-  "close" : "close"
+  "close" : "close",
+  "city" : "city"
 }

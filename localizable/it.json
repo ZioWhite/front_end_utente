@@ -8,6 +8,8 @@
   "successful_login" : "login avvenuto",
   "no_results" : "nessun risultato",
   "no_more_reservations" : "non ci sono altre prenotazioni",
+  "no_more_branches" : "non ci sono altre sedi",
+  "no_more_donations" : "non ci sono altre donazioni",
   "reservations" : "prenotazioni",
   "for_the_donation_on" : "per la donazione del",
   "in" : "a",
@@ -18,6 +20,7 @@
   "book" : "prenotati",
   "reservations" : "prenotazioni",
   "donations" : "donazioni",
-  "branches" : "branches",
-  "close" : "chiudi"
+  "branches" : "sedi",
+  "close" : "chiudi",
+  "city" : "città"
 }

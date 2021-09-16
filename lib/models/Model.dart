@@ -10,6 +10,7 @@ import 'package:front_end_utente/models/support/LogInResult.dart';
 import 'managers/RestManager.dart';
 import 'objects/AuthenticationData.dart';
 import 'objects/Donazione.dart';
+import 'objects/Sede.dart';
 import 'objects/Turno.dart';
 
 class Model {
@@ -127,6 +128,16 @@ class Model {
       List<Prenotazione> result=List<Prenotazione>.from(json.decode(await _restManager.makeGetRequest(Constants.ADDRESS_STORE_SERVER, Constants.REQUEST_SEARCH_BOOKING_BY_DONOR+queryParams)).map((i)=>Prenotazione.fromJson(i)).toList());
       return result;
     }catch (e) {
+      throw e;
+    }
+  }
+
+  Future<List<Sede>> searchSedi(int page, int size, String sort, String city) async {
+    try{
+      String queryParams="pagenumber="+page.toString()+"&pagesize="+size.toString()+"&nome=&citta="+city;
+      List<Sede> result=List<Sede>.from(json.decode(await _restManager.makeGetRequest(Constants.ADDRESS_STORE_SERVER, Constants.REQUEST_SEARCH_BRANCHES+queryParams)).map((i)=>Sede.fromJson(i)).toList());
+      return result;
+    }catch (e){
       throw e;
     }
   }

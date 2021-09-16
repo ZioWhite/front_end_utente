@@ -5,6 +5,7 @@ import 'package:front_end_utente/screens/donazioni/DonazioniPage.dart';
 import 'package:front_end_utente/screens/homepage/MyHomepage.dart';
 import 'package:front_end_utente/screens/login/LoginPage.dart';
 import 'package:front_end_utente/screens/prenotazioni/prenotazioni.dart';
+import 'package:front_end_utente/screens/sedi/SediPage.dart';
 
 import 'models/support/Constants.dart';
 
@@ -44,6 +45,7 @@ class MyApp extends StatelessWidget {
       '/home': (context) => MyHomepage(),
       '/prenotazioni': (context) => Prenotazioni(),
       '/donazioni': (context) => DonazioniPage(),
+      '/sedi': (context) => SediPage(),
       '/':(context)=>LoginPage(),
     };
   }
