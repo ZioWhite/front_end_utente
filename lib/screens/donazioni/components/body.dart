@@ -39,6 +39,16 @@ class _donazioniBodyState extends State<DonazioniBody>{
     );
   }
 
+  Widget bottom(){
+    RouteSettings settings=ModalRoute.of(context).settings;
+    String id=settings.arguments;
+    if(id!=null&&id!="")
+      return redirectBottom(id);
+    return normalBottom();
+  }
+
+
+
   Widget top(){
     return Padding(
       padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
@@ -68,7 +78,16 @@ class _donazioniBodyState extends State<DonazioniBody>{
     );
   }
 
-  Widget bottom(){
+  Widget redirectBottom(String name){
+    if(_donazioni==null){
+      searchSede(name);
+      return CircularProgressIndicator();
+    }else if(_donazioni.length==0)
+      return noResults();
+    return yesResults();
+  }
+
+  Widget normalBottom(){
     return !_working ?
         _donazioni==null ?
             SizedBox.shrink() :
@@ -77,6 +96,8 @@ class _donazioniBodyState extends State<DonazioniBody>{
                 yesResults() :
             CircularProgressIndicator();
   }
+
+
 
   Widget noResults(){
     return Center(
@@ -177,6 +198,19 @@ class _donazioniBodyState extends State<DonazioniBody>{
     });
     Model.sharedInstance.searchDonazioni(input,page,size).then((result) {
       setState(() {
+        _working = false;
+        _donazioni = result;
+      });
+    });
+  }
+
+  void searchSede(String id){
+    setState((){
+      _working=true;
+      _donazioni=null;
+    });
+    Model.sharedInstance.searchDonazioni(id,page,size).then((result){
+      setState((){
         _working = false;
         _donazioni = result;
       });

@@ -5,7 +5,7 @@ import 'package:front_end_utente/components/InputField.dart';
 import 'package:front_end_utente/models/Model.dart';
 import 'package:front_end_utente/models/objects/Sede.dart';
 import 'package:front_end_utente/screens/behaviours/AppLocalizations.dart';
-import 'package:front_end_utente/screens/donazioni/components/BranchCard.dart';
+import 'package:front_end_utente/screens/sedi/components/BranchCard.dart';
 import 'package:front_end_utente/support/extension/StringCapitalization.dart';
 
 class SediBody extends StatefulWidget{
@@ -22,7 +22,7 @@ class _sediBodyState extends State<SediBody>{
   bool _working=false;
   List<Sede> _sedi=null;
   int page=0;
-  int size=0;
+  int size=25;
 
   @override
   Widget build(BuildContext context){

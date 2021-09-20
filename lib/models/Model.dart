@@ -101,7 +101,7 @@ class Model {
   Future<List<Donazione>> searchDonazioni(String citta, int page, int size) async {
     try{
       DateTime start=DateTime.now();
-      DateTime end=DateTime.now().add(Duration(days: 90));
+      DateTime end=DateTime.now().add(Duration(days: 365));
       String today=start.day.toString()+"/"+start.month.toString()+"/"+start.year.toString();
       String plus=end.day.toString()+"/"+end.month.toString()+"/"+end.year.toString();
       String queryParams="?pagenumber="+page.toString()+"&pagesize="+size.toString()+"&sortby=data&datestart="+today+"&dateend="+plus+"&sede="+citta;
@@ -134,7 +134,8 @@ class Model {
 
   Future<List<Sede>> searchSedi(int page, int size, String sort, String city) async {
     try{
-      String queryParams="pagenumber="+page.toString()+"&pagesize="+size.toString()+"&nome=&citta="+city;
+      String queryParams="?pagenumber="+page.toString()+"&pagesize="+size.toString()+"&sortby="+sort+"&nome=&citta="+city;
+      //print(Constants.ADDRESS_STORE_SERVER+Constants.REQUEST_SEARCH_BRANCHES+queryParams);
       List<Sede> result=List<Sede>.from(json.decode(await _restManager.makeGetRequest(Constants.ADDRESS_STORE_SERVER, Constants.REQUEST_SEARCH_BRANCHES+queryParams)).map((i)=>Sede.fromJson(i)).toList());
       return result;
     }catch (e){
@@ -145,7 +146,7 @@ class Model {
   Future<String> deletePrenotazione(int id) async {
     try{
       String serviceUrl="/prenotazioni/"+id.toString()+"/delete";
-      await _restManager.makeGetRequest(Constants.ADDRESS_STORE_SERVER, serviceUrl);
+      await _restManager.makeDeleteRequest(Constants.ADDRESS_STORE_SERVER, serviceUrl);
       return "OK";
     }catch(e){
       print(e);

@@ -22,5 +22,8 @@
   "donations" : "donations",
   "branches" : "branches",
   "close" : "close",
-  "city" : "city"
+  "city" : "city",
+  "tax_code" : "tax code",
+  "contacts" : "contacts",
+  "go_to_donations" : "go to donations"
 }

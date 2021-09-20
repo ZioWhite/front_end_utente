@@ -22,5 +22,8 @@
   "donations" : "donazioni",
   "branches" : "sedi",
   "close" : "chiudi",
-  "city" : "città"
+  "city" : "città",
+  "tax_code" : "codice fiscale",
+  "contacts" : "contatti",
+  "go_to_donations" : "vai alle donazioni"
 }
