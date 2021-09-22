@@ -104,8 +104,22 @@ class Model {
       DateTime end=DateTime.now().add(Duration(days: 365));
       String today=start.day.toString()+"/"+start.month.toString()+"/"+start.year.toString();
       String plus=end.day.toString()+"/"+end.month.toString()+"/"+end.year.toString();
-      String queryParams="?pagenumber="+page.toString()+"&pagesize="+size.toString()+"&sortby=data&datestart="+today+"&dateend="+plus+"&sede="+citta;
+      String queryParams="?pagenumber="+page.toString()+"&pagesize="+size.toString()+"&sortby=data&datestart="+today+"&dateend="+plus+"&citta="+citta;
       List<Donazione> result=List<Donazione>.from(json.decode(await _restManager.makeGetRequest(Constants.ADDRESS_STORE_SERVER, Constants.REQUEST_SEARCH_DONATION+queryParams)).map((i)=>Donazione.fromJson(i)).toList());
+      return result;
+    }catch(e){
+      throw e;
+    }
+  }
+
+  Future<List<Donazione>> searchDonazioniBySede(String sede, int page, int size) async {
+    try{
+      DateTime start=DateTime.now();
+      DateTime end=DateTime.now().add(Duration(days: 365));
+      String today=start.day.toString()+"/"+start.month.toString()+"/"+start.year.toString();
+      String plus=end.day.toString()+"/"+end.month.toString()+"/"+end.year.toString();
+      String queryParams="?pagenumber="+page.toString()+"&pagesize="+size.toString()+"&sortby=data&datestart="+today+"&dateend="+plus+"&sede="+sede;
+      List<Donazione> result=List<Donazione>.from(json.decode(await _restManager.makeGetRequest(Constants.ADDRESS_STORE_SERVER, Constants.REQUEST_SEARCH_DONATION_BYBRANCH+queryParams)).map((i)=>Donazione.fromJson(i)).toList());
       return result;
     }catch(e){
       throw e;

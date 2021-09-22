@@ -20,6 +20,7 @@ class Constants {
   static final String REQUEST_SEARCH_DONOR_BY_CODE = "/donatori/searchbycode";
   static final String REQUEST_SEARCH_BOOKING_BY_DONOR = "/prenotazioni/search";
   static final String REQUEST_SEARCH_DONATION = "/donazioni/search";
+  static final String REQUEST_SEARCH_DONATION_BYBRANCH = "/donazioni/searchbysede";
   static final String REQUEST_SEARCH_TURNI = "/turni/search";
   static final String REQUEST_NEW_BOOKING = "/prenotazioni/new";
   static final String REQUEST_SEARCH_BRANCHES = "/sedi/search";

@@ -209,7 +209,7 @@ class _donazioniBodyState extends State<DonazioniBody>{
       _working=true;
       _donazioni=null;
     });
-    Model.sharedInstance.searchDonazioni(id,page,size).then((result){
+    Model.sharedInstance.searchDonazioniBySede(id,page,size).then((result){
       setState((){
         _working = false;
         _donazioni = result;
